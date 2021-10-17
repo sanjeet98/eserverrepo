@@ -1,3 +1,5 @@
-FROM tomcat:8
-LABEL app=my-app
-COPY target/*.war /usr/local/tomcat/webapps/myweb.war
+FROM openjdk:8
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} complaint-service.jar
+ENTRYPOINT ["java","-jar","/complaint-service.jar"]
+EXPOSE 8761
